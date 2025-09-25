@@ -1,4 +1,4 @@
-#cloud-config
+#cloud-configur
 ssh_pwauth: no
 users:
   - name: user
