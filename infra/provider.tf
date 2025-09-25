@@ -1,11 +1,3 @@
-terraform {
-  required_providers {
-    yandex = {
-      source  = "yandex-cloud/yandex"
-      version = ">= 0.92.0"
-    }
-  }
-
 resource "yandex_vpc_network" "vpc" {
   name        = "kittygram-network"
   description = "VPC for Kittygram"
