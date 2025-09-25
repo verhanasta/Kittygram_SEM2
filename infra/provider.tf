@@ -1,35 +1,33 @@
-resource "yandex_vpc_network" "vpc" {
-  name        = "kittygram-network"
-  description = "VPC for Kittygram"
+# ==================================
+# Terraform & Provider Configuration
+# ==================================
+
+terraform {
+  required_providers {
+    yandex = {
+      source  = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">= 0.13"
+
+  backend "s3" {
+    endpoints = {
+      s3 = "https://storage.yandexcloud.net"
+    }
+    bucket = "devops2025-virtualization"
+    region = "ru-central1"
+    key    = "tf-state.tfstate"
+
+    skip_region_validation      = true
+    skip_credentials_validation = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+  }
 }
 
-resource "yandex_vpc_subnet" "subnet" {
-  name           = "kittygram-subnet"
-  zone           = "ru-central1-a"
-  network_id     = yandex_vpc_network.vpc.id
-  v4_cidr_blocks = ["10.0.0.0/24"]  # подсеть для ВМ
-}
-
-resource "yandex_vpc_security_group" "sg" {
-  name        = "kittygram-sg"
-  network_id  = yandex_vpc_network.vpc.id
-  description = "Security group for Kittygram VM"
-
-  ingress {                      # Правило для SSH
-    protocol       = "TCP"
-    port           = 22
-    v4_cidr_blocks = ["0.0.0.0/0"]
-    description    = "Allow SSH from anywhere"
-  }
-  ingress {                      # Правило для веб-приложения (порт 80)
-    protocol       = "TCP"
-    port           = 80
-    v4_cidr_blocks = ["0.0.0.0/0"]
-    description    = "Allow HTTP from anywhere"
-  }
-  egress {                       # Разрешить весь исходящий трафик
-    protocol       = "ANY"
-    v4_cidr_blocks = ["0.0.0.0/0"]
-    description    = "Allow all outbound traffic"
-  }
+provider "yandex" {
+  service_account_key_file = "./authorized_key.json"
+  cloud_id  = var.cloud_id
+  folder_id = var.folder_id
+  zone      = "ru-central1-a"
 }

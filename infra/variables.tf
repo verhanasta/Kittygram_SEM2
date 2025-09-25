@@ -1,3 +1,7 @@
+# ===============
+# Variables
+# ===============
+
 variable "vpc_name" {
   description = "VPC Name"
   type = string
@@ -13,9 +17,7 @@ variable "net_cidr" {
   }))
 
   default = [
-    { name = "infra-subnet-a", zone = "ru-central1-a", prefix = "10.129.1.0/24" },
-    { name = "infra-subnet-b", zone = "ru-central1-b", prefix = "10.130.1.0/24" },
-    { name = "infra-subnet-d", zone = "ru-central1-d", prefix = "10.131.1.0/24" },
+    { name = "infra-subnet-a", zone = "ru-central1-a", prefix = "10.129.1.0/24" }
   ]
 }
 
@@ -66,12 +68,12 @@ variable "cores" {
 
 variable "memory" {
   type = string
-  default = "2"
+  default = "4"
 }
 
 variable "core_fraction" {
   type = string
-  default = "20"
+  default = "5"
 }
 
 variable "nat" {

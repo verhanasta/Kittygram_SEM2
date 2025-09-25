@@ -1,3 +1,7 @@
+# ==================================
+# Virtual Machine Configuration
+# ==================================
+
 data "yandex_compute_image" "image" {
   family = var.image_family
 }
@@ -11,7 +15,6 @@ resource "yandex_compute_instance" "vm_1" {
   resources {
     cores  = var.cores
     memory = var.memory
-    core_fraction = var.core_fraction
   }
 
   boot_disk {
@@ -31,8 +34,8 @@ resource "yandex_compute_instance" "vm_1" {
   metadata = {
     serial-port-enable = "1"
     user-data = templatefile("${path.module}/init/vm-install.yml",
-      {
-        SSH_KEY = var.ssh_key
-      })
+    {
+      SSH_KEY = var.ssh_key
+    })
   }
 }
