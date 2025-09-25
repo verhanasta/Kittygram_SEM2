@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Terraform
-        uses: yandex-cloud/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.8.3
 
