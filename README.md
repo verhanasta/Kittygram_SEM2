@@ -4,6 +4,7 @@
 ![img_6.png](img_6.png)
 
 - В репозиторий добавлен workflow для развёртывания инфраструктуры с помощью Terraform.
+
 ![img.png](img.png)
 
 - Проект Kittygram доступен по ссылке, указанной в tests.yml.
