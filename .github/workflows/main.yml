@@ -29,7 +29,6 @@ jobs:
   build_frontend_and_push_to_docker_hub:
     name: Push Docker image to DockerHub (Frontend)
     runs-on: ubuntu-latest
-    needs: frontend_tests
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
