@@ -41,7 +41,7 @@ jobs:
           DB_PORT: 5432
         run: |
           cd backend/ 
-          python manage.py tests.yml
+          python manage.py tests
 
   frontend_tests:
     runs-on: ubuntu-latest
