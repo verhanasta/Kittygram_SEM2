@@ -37,7 +37,7 @@ jobs:
           POSTGRES_USER: kittygram_user
           POSTGRES_PASSWORD: kittygram_password
           POSTGRES_DB: kittygram
-          DB_HOST: kittygram_db_1
+          DB_HOST: localhost
           DB_PORT: 5432
         run: |
           cd backend/ 
