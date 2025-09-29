@@ -138,6 +138,7 @@ jobs:
             sudo docker system prune -af
   tests:
     runs-on: ubuntu-latest
+    needs: deploy
     services:
       postgres:
         image: postgres:13.10
